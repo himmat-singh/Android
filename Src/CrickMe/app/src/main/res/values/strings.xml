@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">CrickMe</string>
+    <string name="app_name">Crick Me</string>
+    <string name="app_subtitle">Find your team updates here</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
