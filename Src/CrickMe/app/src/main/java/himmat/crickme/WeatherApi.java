@@ -13,4 +13,7 @@ public interface WeatherApi {
 
     @GET("data/2.5/weather")
     Call<WeatherResponse> GetWeatherDetails(@Query("q") String cityName,@Query("appid") String appId);
+
+
+
 }

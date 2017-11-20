@@ -4,10 +4,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <EditText
+        android:id="@+id/et_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/et_weather_text" />
+
+    <Button
+        android:id="@+id/btn_weather_report"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Know your city weather" />
+
     <TextView
         android:id="@+id/tv_weatherReport"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical|center_horizontal"
+        android:inputType="textAutoCorrect|textAutoComplete"
         android:text="Weather Report" />
 </LinearLayout>

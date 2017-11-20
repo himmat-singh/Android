@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import retrofit2.Call;
@@ -31,13 +33,16 @@ public class WeatherFragment extends Fragment {
         final TextView tv = getActivity().findViewById(R.id.tv_weatherReport);
 
 
-Callback<WeatherResponse> cb = new Callback<WeatherResponse>() {
+final Callback<WeatherResponse> cb = new Callback<WeatherResponse>() {
     @Override
     public void onResponse(Call<WeatherResponse> call, Response<WeatherResponse> response) {
         if (response.body() == null)
             tv.setText("Weather response return NULL");
         else {
-            String result = response.body().base + response.body().cod;
+            WeatherResponse weatherResult = response.body();
+            String result = String.valueOf(weatherResult.id)
+                    + System.getProperty("line.separator") + String.valueOf(weatherResult.weather.get(0).main)
+                    + System.getProperty("line.separator") + String.valueOf(weatherResult.weather.get(0).description);
             tv.setText(result);
         }
     }
@@ -48,11 +53,23 @@ Callback<WeatherResponse> cb = new Callback<WeatherResponse>() {
     }
 };
 
+        Button btnWeather = getActivity().findViewById(R.id.btn_weather_report);
+        btnWeather.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText et_city = getActivity().findViewById(R.id.et_city);
+                String cityName = et_city.getText().toString();
 
-WeatherRestAdapter restAdapter = new WeatherRestAdapter();
-Call<WeatherResponse> apiCall = restAdapter.GetCityWeather("London,UK", "b1b15e88fa797225412429c1c50c122a1");
+                if(cityName!=null && cityName.length()>0) {
+                    WeatherRestAdapter restAdapter = new WeatherRestAdapter();
+                    Call<WeatherResponse> apiCall = restAdapter.GetCityWeather(cityName);
+                    apiCall.enqueue(cb);
+                }
+            }
+        });
 
-apiCall.enqueue(cb);
+
+
 
 
     }

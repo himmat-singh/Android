@@ -15,7 +15,8 @@ public class WeatherRestAdapter {
     protected final String TAG = getClass().getSimpleName();
     protected Retrofit retrofit;
     protected WeatherApi weatherApi;
-    static final String API_URL ="http://openweathermap.org/api/";
+    static final String API_URL ="http://samples.openweathermap.org/";
+    static  final  String API_KEY ="ff3d09fe32a9f3cb653a9b12cac5f297";
 
 
     public  WeatherRestAdapter(){
@@ -27,9 +28,12 @@ public class WeatherRestAdapter {
         weatherApi = retrofit.create(WeatherApi.class);
     }
 
-    public Call<WeatherResponse> GetCityWeather(String cityName, String appId){
+    public Call<WeatherResponse> GetCityWeather(String cityName){
 
-      return weatherApi.GetWeatherDetails(cityName,appId);
+      return weatherApi.GetWeatherDetails(cityName,API_KEY);
 
     }
+
+
+
 }

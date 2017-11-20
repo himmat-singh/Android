@@ -1,5 +1,7 @@
 package himmat.crickme;
 
+import java.util.List;
+
 /**
  * Created by Himmat on 20-11-2017.
  */
@@ -7,4 +9,9 @@ package himmat.crickme;
 public class WeatherResponse {
     public int cod;
     public String base;
+    public String name;
+    public int id;
+    public List<Weather> weather;
 }
+
+
