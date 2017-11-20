@@ -95,6 +95,9 @@ displayFragment(id);
             case R.id.nav_player:
                 fragment = new PlayerFragment();
                 break;
+            case R.id.nav_weather:
+                fragment = new WeatherFragment();
+                break;
             case R.id.nav_share:
                 break;
             case R.id.nav_send:
