@@ -32,6 +32,15 @@ public class PlayerFragment extends DialogFragment {
 
         spinnerPosition.setAdapter(spinnerAdapter);
 
+        String[] roles = PlayerService.GetPlayerRoles();
+        Spinner spinnerRole =(Spinner)view.findViewById(R.id.spinner_role);
+        ArrayAdapter<String> spinnerRoleAdapter = new ArrayAdapter<String>(
+                view.getContext(),
+                R.layout.support_simple_spinner_dropdown_item,
+                roles
+        );
+        spinnerRole.setAdapter(spinnerRoleAdapter);
+
         return view;
     }
 

@@ -63,4 +63,8 @@ public class PlayerService {
     public static Integer[] GetPlayerPositions(){
         return new Integer[]{1,2,3,4,5,6,7,8,9,10};
     }
+
+    public static String[] GetPlayerRoles(){
+        return new String[]{"All Rounder","Batsman","Bowler"};
+    }
 }

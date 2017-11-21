@@ -21,4 +21,7 @@
     <string name="hint_player_fullname">Full Name</string>
     <string name="chk_is_active">Active</string>
     <string name="tv_player_position">Position</string>
+    <string name="btn_reset">Reset</string>
+    <string name="btn_save">Save</string>
+    <string name="tv_player_role">Play as</string>
 </resources>
