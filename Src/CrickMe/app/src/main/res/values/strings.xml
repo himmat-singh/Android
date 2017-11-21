@@ -13,4 +13,12 @@
     <string name="action_settings">Settings</string>
     <string name="et_weather_text">London</string>
     <string name="btn_weather_tooltip">Click button to know your city weather</string>
+    <string name="manage_player">Player Details</string>
+    <string name="btn_add_player">Add New Player</string>
+    <string name="hint_player_nickname">Nick Name</string>
+    <string name="hint_player_firstname">First Name</string>
+    <string name="hint_player_lastname">Last Name</string>
+    <string name="hint_player_fullname">Full Name</string>
+    <string name="chk_is_active">Active</string>
+    <string name="tv_player_position">Position</string>
 </resources>

@@ -14,7 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import himmat.crickme.Matches.MatchFragment;
-import himmat.crickme.Players.PlayerFragment;
+import himmat.crickme.Players.PlayerListFragment;
 import himmat.crickme.Teams.TeamFragment;
 import himmat.crickme.Weathers.WeatherFragment;
 
@@ -95,7 +95,7 @@ displayFragment(id);
                 fragment = new TeamFragment();
                 break;
             case R.id.nav_player:
-                fragment = new PlayerFragment();
+                fragment = new PlayerListFragment();
                 break;
             case R.id.nav_weather:
                 fragment = new WeatherFragment();

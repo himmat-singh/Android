@@ -4,6 +4,17 @@
     android:layout_height="match_parent">
 
 
+    <Button
+        android:id="@+id/btn_new_player"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/holo_green_dark"
+        android:text="@string/btn_add_player" />
+
     <ListView
         android:id="@+id/lv_players"
         android:layout_width="match_parent"

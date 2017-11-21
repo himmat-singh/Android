@@ -1,50 +1,44 @@
 package himmat.crickme.Players;
 
+import android.app.Dialog;
+import android.support.v4.app.DialogFragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.Spinner;
 
 import himmat.crickme.R;
 
 /**
- * Created by Himmat on 17-11-2017.
+ * Created by Himmat on 21-11-2017.
  */
 
-public class PlayerFragment extends Fragment {
+public class PlayerFragment extends DialogFragment {
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.player_list_content,container,false);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.player_content, container, false);
 
-        String[] players = new String[]{
-                "Player 1",
-                "Player 2",
-                "Player 3",
-                "Player 4",
-                "Player 5"
-        };
+        Integer[] positions = PlayerService.GetPlayerPositions();
+        Spinner spinnerPosition = (Spinner) view.findViewById(R.id.spinner_position);
+        ArrayAdapter<Integer> spinnerAdapter = new ArrayAdapter<Integer>(
+                view.getContext(),
+                R.layout.support_simple_spinner_dropdown_item,
+                positions);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                getActivity(),
-                android.R.layout.simple_list_item_1,
-                players
-        );
+        spinnerPosition.setAdapter(spinnerAdapter);
 
-        ListView lv = (ListView)view.findViewById(R.id.lv_players);
-        lv.setAdapter(adapter);
-
-        return  view;
+        return view;
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        getActivity().setTitle(R.string.nav_player);
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        Dialog dialog= super.onCreateDialog(savedInstanceState);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        return dialog;
     }
 }
