@@ -9,7 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import javax.xml.datatype.Duration;
 
 import himmat.crickme.R;
 
@@ -40,6 +44,31 @@ public class PlayerFragment extends DialogFragment {
                 roles
         );
         spinnerRole.setAdapter(spinnerRoleAdapter);
+
+        Button btnSave = (Button)view.findViewById(R.id.btn_player_save);
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast toast = Toast.makeText(view.getContext(),"Saving player data...", Toast.LENGTH_SHORT);
+                toast.show();
+
+                //TODO: Save player details
+
+                //TODO: After details saved, load player list
+            }
+        });
+
+
+        Button btnReset = (Button)view.findViewById(R.id.btn_palyer_reset);
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(view.getContext(),"Resetting player details",Toast.LENGTH_SHORT).show();
+
+                //TODO: Reset player details
+            }
+        });
+
 
         return view;
     }
