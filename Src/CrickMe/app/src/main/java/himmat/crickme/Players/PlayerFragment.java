@@ -4,6 +4,9 @@ import android.app.Dialog;
 import android.support.v4.app.DialogFragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +58,22 @@ public class PlayerFragment extends DialogFragment {
                 //TODO: Save player details
 
                 //TODO: After details saved, load player list
+                Fragment fragment = getFragmentManager().findFragmentByTag("Player");
+                if(fragment!=null){
+                    DialogFragment dialogFragment = (DialogFragment) fragment;
+                    dialogFragment.dismiss();
+                }
+
+
+                /*
+                //TODO: Below written code for calling fragment from another fragment
+                Fragment fragmentPlayerList = new PlayerListFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.content_main,fragmentPlayerList);
+                fragmentTransaction.commit();
+                */
+
             }
         });
 
