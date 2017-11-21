@@ -1,9 +1,8 @@
-package himmat.crickme;
+package himmat.crickme.Matches;
 
 import retrofit2.Callback;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 /**
  * Created by Himmat on 20-11-2017.

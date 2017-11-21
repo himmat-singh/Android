@@ -1,4 +1,4 @@
-package himmat.crickme;
+package himmat.crickme.Weathers;
 
 import java.util.List;
 

@@ -16,7 +16,8 @@
         android:id="@+id/btn_weather_report"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Know your city weather" />
+        android:text="Know your city weather"
+        android:tooltipText="@string/btn_weather_tooltip" />
 
     <TextView
         android:id="@+id/tv_weatherReport"

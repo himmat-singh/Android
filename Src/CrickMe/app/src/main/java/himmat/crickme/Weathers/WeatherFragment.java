@@ -1,5 +1,6 @@
-package himmat.crickme;
+package himmat.crickme.Weathers;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import himmat.crickme.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -57,6 +60,13 @@ final Callback<WeatherResponse> cb = new Callback<WeatherResponse>() {
         btnWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Context ctx = getActivity().getApplication().getApplicationContext();
+                int duration = Toast.LENGTH_SHORT;
+                CharSequence toastText = "You city weather data loading...";
+                Toast toast= Toast.makeText(ctx,toastText,duration);
+                toast.show();
+
                 EditText et_city = getActivity().findViewById(R.id.et_city);
                 String cityName = et_city.getText().toString();
 
