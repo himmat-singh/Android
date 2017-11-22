@@ -24,6 +24,13 @@
         android:textSize="18sp" />
 
     <EditText
+        android:id="@+id/tv_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:visibility="invisible"/>
+
+    <EditText
         android:id="@+id/et_nick_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

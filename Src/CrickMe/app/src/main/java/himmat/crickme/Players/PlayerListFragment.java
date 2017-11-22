@@ -7,9 +7,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -47,6 +49,18 @@ public class PlayerListFragment extends Fragment {
 
         ListView lv = (ListView)view.findViewById(R.id.lv_players);
         lv.setAdapter(adapter);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View itemView, int i, long l) {
+                TextView tv_id = (TextView)itemView.findViewById(R.id.tv_player_id);
+                Bundle args = new Bundle();
+                args.putInt("Id",Integer.valueOf(tv_id.getText().toString()));
+                DialogFragment playerFragment = new PlayerFragment();
+                playerFragment.setArguments(args);
+                playerFragment.show(getFragmentManager(),"Player");
+            }
+        });
 
         Button btnPlayer = (Button)view.findViewById(R.id.btn_new_player);
         btnPlayer.setOnClickListener(new View.OnClickListener() {

@@ -18,6 +18,9 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 import javax.xml.datatype.Duration;
 
 import himmat.crickme.R;
@@ -27,6 +30,9 @@ import himmat.crickme.R;
  */
 
 public class PlayerFragment extends DialogFragment {
+
+    int player_id=0;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -37,6 +43,7 @@ public class PlayerFragment extends DialogFragment {
         final TextView tv_fullname = (TextView) view.findViewById(R.id.et_full_name);
         final TextView tv_nickname = (TextView) view.findViewById(R.id.et_nick_name);
         final Switch sw_active = (Switch) view.findViewById(R.id.sw_active);
+        final TextView tv_id = (TextView) view.findViewById(R.id.tv_id);
 
         Integer[] positions = PlayerService.GetPlayerPositions();
         final Spinner spinnerPosition = (Spinner) view.findViewById(R.id.spinner_position);
@@ -64,8 +71,10 @@ public class PlayerFragment extends DialogFragment {
                 toast.show();
 
                 //TODO: Save player details
+                int id = Integer.parseInt(tv_id.getText().toString());
+
                 Player player = new Player(
-                        0,
+                        id,
                         tv_nickname.getText().toString(),
                         tv_firstname.getText().toString(),
                         tv_lastname.getText().toString(),
@@ -87,12 +96,11 @@ public class PlayerFragment extends DialogFragment {
                 }
 
 
-
                 //TODO: Below written code for calling fragment from another fragment
                 Fragment fragmentPlayerList = new PlayerListFragment();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.content_main,fragmentPlayerList);
+                fragmentTransaction.replace(R.id.content_main, fragmentPlayerList);
                 fragmentTransaction.commit();
 
 
@@ -114,10 +122,24 @@ public class PlayerFragment extends DialogFragment {
                 spinnerPosition.setSelection(0);
                 spinnerRole.setSelection(0);
                 sw_active.setChecked(false);
+                tv_id.setText(0);
 
             }
         });
 
+        if (player_id > 0) {
+            Player editPlayer = PlayerService.Edit(player_id);
+            if (editPlayer != null) {
+                tv_nickname.setText(editPlayer.NickName);
+                tv_firstname.setText(editPlayer.FirstName);
+                tv_lastname.setText(editPlayer.LastName);
+                tv_fullname.setText(editPlayer.FullName);
+                spinnerPosition.setSelection(Integer.valueOf(editPlayer.Position));
+                spinnerRole.setSelection(Arrays.asList(roles).indexOf(editPlayer.Role));
+                sw_active.setChecked(Boolean.valueOf(editPlayer.IsActive));
+                tv_id.setText(String.valueOf( editPlayer.Id));
+            }
+        }
 
         return view;
     }
@@ -126,6 +148,8 @@ public class PlayerFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Dialog dialog= super.onCreateDialog(savedInstanceState);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        if(getArguments()!=null)
+            player_id = getArguments().getInt("Id");
         return dialog;
     }
 }

@@ -40,12 +40,15 @@ public class PlayerListAdapter extends ArrayAdapter<Player> {
         if(playerList!=null) {
             TextView tv_full_name = (TextView) view.findViewById(R.id.tv_player_full_name);
             TextView tv_description = (TextView) view.findViewById(R.id.tv_player_description);
+            TextView tv_id = (TextView)view.findViewById(R.id.tv_player_id);
 
             Player player = playerList.get(position);
 
             tv_full_name.setText(player.FullName);
             tv_description.setText("Playing as " + String.valueOf(player.Role + " at position " + String.valueOf(player.Position)));
+            tv_id.setText(String.valueOf( player.Id));
         }
+
         return  view;
 
     }
