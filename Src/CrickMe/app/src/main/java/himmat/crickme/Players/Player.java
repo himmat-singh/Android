@@ -14,4 +14,16 @@ public class Player {
     public String Role;
     public String Position;
     public String IsActive;
+
+    public Player(int id, String nickName, String firstName, String lastName, String fullName, String description, String role, String position, String isActive) {
+        Id = id;
+        NickName = nickName;
+        FirstName = firstName;
+        LastName = lastName;
+        FullName = fullName;
+        Description = description;
+        Role = role;
+        Position = position;
+        IsActive = isActive;
+    }
 }

@@ -3,7 +3,7 @@ package himmat.crickme.Players;
 import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
-
+import java.util.List;
 
 
 /**
@@ -12,13 +12,10 @@ import java.util.ArrayList;
 
 public class PlayerService {
 
-   ArrayList<Player> playerList = null;
+   static List<Player> playerList = new ArrayList<Player>();
 
-    public PlayerService() {
-        playerList = new ArrayList<Player>();
-    }
 
-    public ArrayList<Player> Add(Player player) {
+    public static List<Player> Add(Player player) {
         if (player != null) {
             //TODO: Handle duplicate player
             player.Id = playerList.size() + 1;
@@ -27,7 +24,7 @@ public class PlayerService {
         return playerList;
     }
 
-    public Player Edit(int id){
+    public static Player Edit(int id){
 
         for(Player player: playerList)
             if(player.Id == id)
@@ -36,7 +33,7 @@ public class PlayerService {
         return  null;
     }
 
-    public ArrayList<Player> Update(int id,Player player){
+    public static List<Player> Update(int id,Player player){
         if(id==player.Id){
             Player p = Edit(id);
 
@@ -53,12 +50,14 @@ public class PlayerService {
         return playerList;
     }
 
-    public ArrayList<Player> Remove(int id) {
+    public List<Player> Remove(int id) {
         Player player = Edit(id);
         if (player != null)
             playerList.remove(player);
         return playerList;
     }
+
+
 
     public static Integer[] GetPlayerPositions(){
         return new Integer[]{1,2,3,4,5,6,7,8,9,10};
@@ -66,5 +65,20 @@ public class PlayerService {
 
     public static String[] GetPlayerRoles(){
         return new String[]{"All Rounder","Batsman","Bowler"};
+    }
+
+    public static List<Player> GetPlayerList() {
+
+        if (playerList == null) {
+            playerList = new ArrayList<Player>();
+
+            playerList.add(new Player(1, "", "Player 1 FN", "LN", "Player 1 FN LN", "", "Batsman", "1", "Yes"));
+            playerList.add(new Player(2, "", "Player 2 FN", "LN", "Player 2 FN LN", "", "Batsman", "2", "Yes"));
+            playerList.add(new Player(3, "", "Player 3 FN", "LN", "Player 3 FN LN", "", "Batsman", "3", "Yes"));
+            playerList.add(new Player(4, "", "Player 4 FN", "LN", "Player 4 FN LN", "", "Batsman", "4", "Yes"));
+            playerList.add(new Player(5, "", "Player 5 FN", "LN", "Player 5 FN LN", "", "Batsman", "5", "Yes"));
+            playerList.add(new Player(6, "", "Player 6 FN", "LN", "Player 6 FN LN", "", "Batsman", "6", "Yes"));
+        }
+        return playerList;
     }
 }

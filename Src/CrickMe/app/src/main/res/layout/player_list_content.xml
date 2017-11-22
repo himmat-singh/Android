@@ -18,5 +18,7 @@
     <ListView
         android:id="@+id/lv_players"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_margin="4dp"
+        android:padding="4dp" />
 </LinearLayout>

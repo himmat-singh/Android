@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.util.List;
+
 import himmat.crickme.R;
 
 /**
@@ -23,6 +25,7 @@ public class PlayerListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.player_list_content,container,false);
 
+        /*
         String[] players = new String[]{
                 "Player 1",
                 "Player 2",
@@ -36,6 +39,11 @@ public class PlayerListFragment extends Fragment {
                 android.R.layout.simple_list_item_1,
                 players
         );
+        */
+
+        List<Player> playerList = PlayerService.GetPlayerList();
+
+        PlayerListAdapter adapter = new PlayerListAdapter(getContext(),R.layout.player_list_item,playerList);
 
         ListView lv = (ListView)view.findViewById(R.id.lv_players);
         lv.setAdapter(adapter);
