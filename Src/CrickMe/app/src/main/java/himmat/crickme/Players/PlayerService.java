@@ -69,9 +69,7 @@ public class PlayerService {
 
     public static List<Player> GetPlayerList() {
 
-        if (playerList == null) {
-            playerList = new ArrayList<Player>();
-
+        if (playerList != null && playerList.size()==0) {
             playerList.add(new Player(1, "", "Player 1 FN", "LN", "Player 1 FN LN", "", "Batsman", "1", "Yes"));
             playerList.add(new Player(2, "", "Player 2 FN", "LN", "Player 2 FN LN", "", "Batsman", "2", "Yes"));
             playerList.add(new Player(3, "", "Player 3 FN", "LN", "Player 3 FN LN", "", "Batsman", "3", "Yes"));

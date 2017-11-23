@@ -13,7 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import himmat.crickme.Matches.MatchFragment;
+import himmat.crickme.Matches.MatchListFragment;
 import himmat.crickme.Players.PlayerListFragment;
 import himmat.crickme.Teams.TeamFragment;
 import himmat.crickme.Weathers.WeatherFragment;
@@ -89,7 +89,7 @@ displayFragment(id);
 
         switch (id){
             case R.id.nav_match:
-                fragment=new MatchFragment();
+                fragment=new MatchListFragment();
                 break;
             case R.id.nav_team:
                 fragment = new TeamFragment();
