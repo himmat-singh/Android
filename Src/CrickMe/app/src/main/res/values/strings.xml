@@ -32,4 +32,5 @@
     <string name="txt_match_team1">Team 1</string>
     <string name="txt_match_team2">Team 2</string>
     <string name="txt_new_match">Add New Match</string>
+    <string name="btn_caption_date">Pick Date</string>
 </resources>

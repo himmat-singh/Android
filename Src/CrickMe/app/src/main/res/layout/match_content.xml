@@ -50,12 +50,27 @@
         android:inputType="textPersonName"
         android:singleLine="false" />
 
-    <EditText
-        android:id="@+id/et_schedule_date"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/txt_match_schedule_date"
-        android:inputType="date" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_schedule_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/txt_match_schedule_date"
+            android:inputType="date" />
+
+        <Button
+            android:id="@+id/btn_schedule_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/holo_blue_dark"
+            android:text="@string/btn_caption_date" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

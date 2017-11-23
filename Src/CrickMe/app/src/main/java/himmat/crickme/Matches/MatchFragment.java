@@ -24,6 +24,7 @@ import java.util.List;
 import himmat.crickme.R;
 import himmat.crickme.Teams.Team;
 import himmat.crickme.Teams.TeamService;
+import himmat.crickme.Utils.DatePickerFragment;
 
 /**
  * Created by Himmat on 23-11-2017.
@@ -67,6 +68,16 @@ public class MatchFragment extends DialogFragment {
         spinner_team1.setAdapter(teamAdapter);
         spinner_team2.setAdapter(teamAdapter);
 
+        Button btnScheduleDate = (Button)view.findViewById(R.id.btn_schedule_date);
+        btnScheduleDate.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                DialogFragment newFragment = new DatePickerFragment();
+                newFragment.show(getFragmentManager(), "DatePicker");
+                tv_schedule_date.setText(String.valueOf( DatePickerFragment.date));
+            }
+        });
+
         Button btnReset = (Button)view.findViewById(R.id.btn_reset);
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,8 +89,8 @@ public class MatchFragment extends DialogFragment {
                 tv_title.setText("");
                 tv_series.setText("");
                 tv_schedule_date.setText("");
-                //spinner_team1.setSelection(0);
-                //spinner_team2.setSelection(0);
+                spinner_team1.setSelection(0);
+                spinner_team2.setSelection(0);
                 tv_description.setText("");
             }
         });
