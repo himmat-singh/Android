@@ -85,7 +85,10 @@ public class PlayerFragment extends DialogFragment {
                         String.valueOf(sw_active.isChecked())
                 );
 
-                PlayerService.Add(player);
+                if (id > 0)
+                    PlayerService.Update(id, player);
+                else
+                    PlayerService.Add(player);
 
 
                 //TODO: After details saved, load player list
@@ -134,10 +137,10 @@ public class PlayerFragment extends DialogFragment {
                 tv_firstname.setText(editPlayer.FirstName);
                 tv_lastname.setText(editPlayer.LastName);
                 tv_fullname.setText(editPlayer.FullName);
-                spinnerPosition.setSelection(Integer.valueOf(editPlayer.Position));
+                spinnerPosition.setSelection(Integer.valueOf(editPlayer.Position)-1);
                 spinnerRole.setSelection(Arrays.asList(roles).indexOf(editPlayer.Role));
                 sw_active.setChecked(Boolean.valueOf(editPlayer.IsActive));
-                tv_id.setText(String.valueOf( editPlayer.Id));
+                tv_id.setText(String.valueOf(editPlayer.Id));
             }
         }
 
