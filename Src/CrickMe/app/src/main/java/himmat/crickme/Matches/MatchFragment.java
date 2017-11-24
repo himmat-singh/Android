@@ -19,9 +19,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.FieldPosition;
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import himmat.crickme.R;
 import himmat.crickme.Teams.Team;
@@ -104,18 +110,34 @@ public class MatchFragment extends DialogFragment implements DatePickerFragment.
                 Toast toast = Toast.makeText(getContext(),"Match details are saving...",Toast.LENGTH_SHORT);
                 toast.show();
 
-                /*
+                int id = Integer.valueOf(tv_id.getText().toString());
+                DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+                Date scheduleDate = new Date();
+                try{
+                 scheduleDate = dateFormat.parse(tv_schedule_date.getText().toString());
+                }
+                catch (Exception ex){
+
+                }
+
                 Match match = new Match(
-                        0
-                ,""
-                ,""
-                ,new Date("12-12-12")
-                ,0
-                ,0
-                ,"");
-*/
+                        id
+                ,tv_title.getText().toString()
+                ,tv_series.getText().toString()
+                , scheduleDate
+                ,spinner_team1.getSelectedItem().toString()
+                ,spinner_team2.getSelectedItem().toString()
+                ,tv_description.getText().toString()
+                );
+
 
                 //TODO: Save match details
+                if(id>0)
+                    MatchService.Update(id,match);
+                else
+                    MatchService.Add(match);
+
+
 
                 //TODO: After match details saved, load match list
                 Fragment fragment = getFragmentManager().findFragmentByTag("Match");

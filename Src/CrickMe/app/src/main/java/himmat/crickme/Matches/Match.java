@@ -11,11 +11,11 @@ public class Match {
     public String Title;
     public String Series;
     public Date ScheduleDate;
-    public int Team1Id;
-    public int Team2Id;
+    public String Team1Id;
+    public String Team2Id;
     public String Description;
 
-    public Match(int id, String title, String series, Date scheduleDate, int team1Id, int team2Id, String description) {
+    public Match(int id, String title, String series, Date scheduleDate, String team1Id, String team2Id, String description) {
         Id = id;
         Title = title;
         Series = series;

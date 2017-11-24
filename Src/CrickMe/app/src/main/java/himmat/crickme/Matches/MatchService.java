@@ -58,11 +58,11 @@ public class MatchService {
 
     public static List<Match> GetMatchList(){
         if(matchList!=null && matchList.size()==0){
-            matchList.add(new Match(1,"Match 1","Series 1",new Date(),0,0,"Team A vs Team B"));
-            matchList.add(new Match(2,"Match 2","Series 2",new Date(),0,0,"Team AA vs Team BB"));
-            matchList.add(new Match(3,"Match 3","Series 3",new Date(),0,0,"Team AAA vs Team BBB"));
-            matchList.add(new Match(4,"Match 4","Series 4",new Date(),0,0,"Team AAAA vs Team BBBB"));
-            matchList.add(new Match(5,"Match 5","Series 5",new Date(),0,0,"Team AAAAA vs Team BBBBB"));
+            matchList.add(new Match(1,"Match 1","Series 1",new Date(),"Team A","Team B","Team A vs Team B"));
+            matchList.add(new Match(2,"Match 2","Series 2",new Date(),"Team B","Team C","Team AA vs Team BB"));
+            matchList.add(new Match(3,"Match 3","Series 3",new Date(),"Team A","Team C","Team AAA vs Team BBB"));
+            matchList.add(new Match(4,"Match 4","Series 4",new Date(),"Team C","Team D","Team AAAA vs Team BBBB"));
+            matchList.add(new Match(5,"Match 5","Series 5",new Date(),"Team B","Team D","Team AAAAA vs Team BBBBB"));
         }
         return matchList;
     }
