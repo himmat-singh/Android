@@ -32,6 +32,7 @@ import java.util.Locale;
 import himmat.crickme.R;
 import himmat.crickme.Teams.Team;
 import himmat.crickme.Teams.TeamService;
+import himmat.crickme.Utils.AppUtility;
 import himmat.crickme.Utils.DatePickerFragment;
 
 /**
@@ -111,20 +112,12 @@ public class MatchFragment extends DialogFragment implements DatePickerFragment.
                 toast.show();
 
                 int id = Integer.valueOf(tv_id.getText().toString());
-                DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
-                Date scheduleDate = new Date();
-                try{
-                 scheduleDate = dateFormat.parse(tv_schedule_date.getText().toString());
-                }
-                catch (Exception ex){
-
-                }
 
                 Match match = new Match(
                         id
                 ,tv_title.getText().toString()
                 ,tv_series.getText().toString()
-                , scheduleDate
+                ,AppUtility.GetDateFromString(tv_schedule_date.getText().toString())
                 ,spinner_team1.getSelectedItem().toString()
                 ,spinner_team2.getSelectedItem().toString()
                 ,tv_description.getText().toString()
@@ -157,6 +150,19 @@ public class MatchFragment extends DialogFragment implements DatePickerFragment.
             }
         });
 
+
+        if(matchId>0){
+            Match match = MatchService.Edit(matchId);
+
+            tv_id.setText(String.valueOf(match.Id));
+            tv_title.setText(match.Title);
+            tv_series.setText(match.Series);
+            tv_description.setText(match.Description);
+            tv_schedule_date.setText(AppUtility.GetStringFromDate(match.ScheduleDate));
+            spinner_team1.setSelection(TeamService.GetTeamIndex(match.Team1Id));
+            spinner_team2.setSelection(TeamService.GetTeamIndex(match.Team2Id));
+        }
+
         return view;
     }
 
@@ -164,7 +170,6 @@ public class MatchFragment extends DialogFragment implements DatePickerFragment.
     @Override
     public void onDateSet(Date date) {
         final TextView tv_schedule_date=(TextView)view.findViewById(R.id.et_schedule_date);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
-        tv_schedule_date.setText(simpleDateFormat.format(date));
+        tv_schedule_date.setText(AppUtility.GetStringFromDate(date));
     }
 }

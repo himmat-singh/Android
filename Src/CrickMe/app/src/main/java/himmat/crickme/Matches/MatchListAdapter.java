@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import himmat.crickme.R;
+import himmat.crickme.Utils.AppUtility;
 
 /**
  * Created by Himmat on 23-11-2017.
@@ -42,12 +43,16 @@ public class MatchListAdapter extends ArrayAdapter<Match> {
             final TextView tv_id = (TextView) view.findViewById(R.id.et_match_id);
             final TextView tv_title = (TextView) view.findViewById(R.id.tv_match_title);
             final TextView tv_description = (TextView) view.findViewById(R.id.tv_match_description);
+            final TextView tv_series =(TextView)view.findViewById(R.id.tv_match_series);
+            final TextView tv_schedule_date=(TextView)view.findViewById(R.id.tv_match_schedule_date);
 
             Match match = matchList.get(position);
 
             tv_id.setText(String.valueOf(match.Id));
             tv_title.setText(match.Title);
             tv_description.setText(match.Description);
+            tv_series.setText(match.Series);
+            tv_schedule_date.setText(AppUtility.GetStringFromDate( match.ScheduleDate));
         }
 
         return  view;
