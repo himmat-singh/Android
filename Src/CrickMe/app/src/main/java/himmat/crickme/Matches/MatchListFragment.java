@@ -69,6 +69,9 @@ public class MatchListFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 DialogFragment matchFragment = new MatchFragment();
+                Bundle args = new Bundle();
+                args.putInt("Id",0);
+                matchFragment.setArguments(args);
                 matchFragment.show(getFragmentManager(),"Match");
             }
         });
