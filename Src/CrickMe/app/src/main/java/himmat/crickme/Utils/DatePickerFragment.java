@@ -16,7 +16,31 @@ import java.util.Date;
 public class DatePickerFragment extends DialogFragment
         implements DatePickerDialog.OnDateSetListener {
 
-    public static Date date;
+
+    private DatePickerFragmentListener datePickerListener;
+    public interface DatePickerFragmentListener {
+        void onDateSet(Date date);
+    }
+
+    public DatePickerFragmentListener getDatePickerListener() {
+        return this.datePickerListener;
+    }
+
+    public void setDatePickerListener(DatePickerFragmentListener listener) {
+        this.datePickerListener = listener;
+    }
+
+    protected void notifyDatePickerListener(Date date) {
+        if(this.datePickerListener != null) {
+            this.datePickerListener.onDateSet(date);
+        }
+    }
+
+    public static DatePickerFragment newInstance(DatePickerFragmentListener listener) {
+        DatePickerFragment fragment = new DatePickerFragment();
+        fragment.setDatePickerListener(listener);
+        return fragment;
+    }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -33,6 +57,17 @@ public class DatePickerFragment extends DialogFragment
     @Override
     public void onDateSet(DatePicker view, int year, int month, int day) {
         // Do something with the date chosen by the user
-        date = new Date(year, month, day);
+        Calendar c = Calendar.getInstance();
+        c.set(year, month, day);
+        Date date = c.getTime();
+
+        // Here we call the listener and pass the date back to it.
+        notifyDatePickerListener(date);
+
+        
     }
+
+
+
+
 }

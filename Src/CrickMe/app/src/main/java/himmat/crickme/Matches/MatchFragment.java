@@ -1,6 +1,7 @@
 package himmat.crickme.Matches;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -30,9 +32,10 @@ import himmat.crickme.Utils.DatePickerFragment;
  * Created by Himmat on 23-11-2017.
  */
 
-public class MatchFragment extends DialogFragment {
+public class MatchFragment extends DialogFragment implements DatePickerFragment.DatePickerFragmentListener {
 
     static int matchId;
+    static View view;
 
     @NonNull
     @Override
@@ -48,7 +51,8 @@ public class MatchFragment extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.match_content,container,false);
+        final DatePickerFragment.DatePickerFragmentListener dtThis = this;
+        view = inflater.inflate(R.layout.match_content,container,false);
 
         final TextView tv_id = (TextView)view.findViewById(R.id.et_id);
         final TextView tv_title=(TextView)view.findViewById(R.id.et_title);
@@ -68,13 +72,11 @@ public class MatchFragment extends DialogFragment {
         spinner_team1.setAdapter(teamAdapter);
         spinner_team2.setAdapter(teamAdapter);
 
-        Button btnScheduleDate = (Button)view.findViewById(R.id.btn_schedule_date);
-        btnScheduleDate.setOnClickListener(new View.OnClickListener(){
+        tv_schedule_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DialogFragment newFragment = new DatePickerFragment();
-                newFragment.show(getFragmentManager(), "DatePicker");
-                tv_schedule_date.setText(String.valueOf( DatePickerFragment.date));
+                DatePickerFragment fragment = DatePickerFragment.newInstance(dtThis);
+                fragment.show(getFragmentManager(),"DatePicker");
             }
         });
 
@@ -134,5 +136,13 @@ public class MatchFragment extends DialogFragment {
         });
 
         return view;
+    }
+
+
+    @Override
+    public void onDateSet(Date date) {
+        final TextView tv_schedule_date=(TextView)view.findViewById(R.id.et_schedule_date);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+        tv_schedule_date.setText(simpleDateFormat.format(date));
     }
 }
